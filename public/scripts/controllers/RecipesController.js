@@ -28,9 +28,9 @@ $scope.getRecipesByCategory = function(category){
 		
 	});
 
+ 
 
-
-	$scope.deleteRecipe = function(recipe_id){
+	$scope.deleteRecipe = function(recipe){
 		dataService.deleteRecipe(recipe_id);
 		if(select.value != ''){
 			$scope.getRecipesByCategory(select.value);
@@ -38,13 +38,18 @@ $scope.getRecipesByCategory = function(category){
 			$scope.getAllRecipes();
 		}
 	}
-	$scope.addRecipe = function(recipe_id){
-		dataService.deleteRecipe(recipe_id);
-		if(select.value != ''){
+	$scope.addRecipe = function(){
+
+		dataService.addRecipe({},function(){
+			if(select.value != ''){
 			$scope.getRecipesByCategory(select.value);
 		}else{
 			$scope.getAllRecipes();
 		}
+		},function(error){
+			console.log('There has ocurred an error while adding your new recipe' ,error);
+		});
+		
 	}
 
 
