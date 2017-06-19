@@ -1,4 +1,5 @@
-app.controller('RecipesController',function($scope,dataService){
+app.controller('RecipesController',function($scope,dataService,$location,$window){
+
  	$scope.recipes=[];
 
 
@@ -38,19 +39,22 @@ $scope.getRecipesByCategory = function(category){
 			$scope.getAllRecipes();
 		}
 	}
-	$scope.addRecipe = function(){
+	// $scope.addRecipe = function(){
 
-		dataService.addRecipe({},function(){
-			if(select.value != ''){
-			$scope.getRecipesByCategory(select.value);
-		}else{
-			$scope.getAllRecipes();
-		}
-		},function(error){
-			console.log('There has ocurred an error while adding your new recipe' ,error);
-		});
+	// 	dataService.addRecipe({},function(){
+	// 		if(select.value != ''){
+	// 		$scope.getRecipesByCategory(select.value);
+	// 	}else{
+	// 		$scope.getAllRecipes();
+	// 	}
+	// 	},function(error){
+	// 		console.log('There has ocurred an error while adding your new recipe' ,error);
+	// 	});
 		
-	}
+	// }
+	document.getElementById('addRecipe').addEventListener('click',function(){
+		$window.location.href = '#!/add';
+	});
 
 
  	$scope.getAllRecipes();

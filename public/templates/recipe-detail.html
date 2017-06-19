@@ -42,7 +42,7 @@
     <p>
       <!-- TODO Add a directive to this input element to bind its value 
         to the recipe model's `name` property. -->
-      <input type="text">
+      <input type="text" value ="{{recipe.name}}">
     </p>
   </div>
 </div>
@@ -58,7 +58,7 @@
     <p>
       <!-- TODO Add a directive to this textarea element to bind its content 
         to the recipe model's `description` property. -->
-      <textarea></textarea>
+      <textarea>{{recipe.description}}</textarea>
     </p>
   </div>
 </div>
@@ -75,8 +75,8 @@
       <!-- TODO Add directives to this select element to bind its value 
         to the recipe model's `category` property and to populate the list
         with the categories from the database. -->
-      <select>
-        <option value="">All Categories</option>
+      <select value ="{{recipe.category}}">
+       <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
       </select>
     </p>
   </div>
@@ -93,7 +93,7 @@
     <p>
       <!-- TODO Add a directive to this input element to bind its value 
         to the recipe model's `prepTime` property. -->
-      <input type="number">
+      <input type="number" value ="{{recipe.prepTime}}">
     </p>
   </div>
 </div>
@@ -109,7 +109,7 @@
     <p>
       <!-- TODO Add a directive to this input element to bind its value 
         to the recipe model's `cookTime` property. -->
-      <input type="number">
+      <input type="number" value ="{{recipe.cookTime}}" >
     </p>
   </div>
 </div>
@@ -139,29 +139,30 @@
 
   <!-- TODO Add a directive to this div element so that it repeats 
     for each recipe ingredient to display. -->
-  <div class="ingredient-row">
+  <div  ng-repeat = "item in ingredients " class="ingredient-row ">
     <div class="prefix-20 grid-30">
       <p>
         <!-- TODO Add directives to this select element to bind its value 
           to the recipe ingredient model's `foodItem` property and to 
           populate the list with the food items from the database. -->
         <select>
-          <option value="">Select Item</option>
+          <option>{{item.foodItem}}</option>
         </select>
+        
       </p>
     </div>
     <div class="grid-30">
       <p>
         <!-- TODO Add a directive to this input element to bind its value 
           to the recipe ingredient model's `condition` property. -->
-        <input type="text">
+        <input type="text" value ="{{item.condition}}">
       </p>
     </div>
     <div class="grid-15">
       <p>
         <!-- TODO Add a directive to this input element to bind its value 
           to the recipe ingredient model's `amount` property. -->
-        <input type="text">
+        <input type="text" value="{{item.amount}}">
       </p>
     </div>
     <div class="grid-5 pad-top">
