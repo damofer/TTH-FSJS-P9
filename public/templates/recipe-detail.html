@@ -9,8 +9,9 @@
     <div class="flush-right">
       <!-- TODO Add directives to both the "Save Recipe" and "Cancel"
         buttons in order to handle user clicks. -->
-      <button>Save Recipe</button>
-      <button class="secondary">Cancel</button>
+      <button ng-if="type =='edit'"  ng-click="updateRecipe(recipe)">Update Recipe</button>
+       <button ng-if="type =='add'" ng-click="saveRecipe(recipe)">Save Recipe</button>
+      <button class="secondary" onclick="location.href='/#!'">Cancel</button>
     </div>
   </div>
 </div>
@@ -42,7 +43,7 @@
     <p>
       <!-- TODO Add a directive to this input element to bind its value 
         to the recipe model's `name` property. -->
-      <input type="text" ng-model ="recipe.name">
+      <input  type="text" ng-model ="recipe.name">
     </p>
   </div>
 </div>
@@ -75,7 +76,7 @@
       <!-- TODO Add directives to this select element to bind its value 
         to the recipe model's `category` property and to populate the list
         with the categories from the database. -->
-      <select >
+      <select ng-model="recipe.category">
        <option value="{{recipe.category}}">{{recipe.category}}</option>
        <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
       </select>
@@ -140,13 +141,13 @@
 
   <!-- TODO Add a directive to this div element so that it repeats 
     for each recipe ingredient to display. -->
-  <div  ng-repeat = "item in ingredients " class="ingredient-row grid-100 row">
+  <div  ng-repeat = "item in recipe.ingredients " class="ingredient-row grid-100 row">
     <div class="prefix-20 grid-30">
       <p>
         <!-- TODO Add directives to this select element to bind its value 
           to the recipe ingredient model's `foodItem` property and to 
           populate the list with the food items from the database. -->
-        <select >
+        <select ng-model="item.foodItem" >
           <option value="">{{item.foodItem}}</option>
           <option ng-repeat="foodItem in foodItems" value="{{foodItem.name}}">{{foodItem.name}}</option>
         </select>
@@ -171,7 +172,7 @@
       <p class="flush-right">
         <!-- TODO Add a directive to this anchor element so that you can 
           delete the recipe ingredient when the user clicks on the 'Delete' link. -->
-        <a class="no-action-link" ng-click="delete(item,ingredients)"> <img src="images/delete.svg" height="12px"> </a>
+        <a class="no-action-link" ng-click="delete(item,recipe.ingredients)"> <img src="images/delete.svg" height="12px"> </a>
       </p>
     </div>
   </div>

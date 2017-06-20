@@ -1,36 +1,44 @@
-app.service('dataService', function($http) {
-	var base_uri = 'http://localhost:5000';
-    this.getAllRecipes = function (callback) {
-       $http.get(base_uri + '/api/recipes')
-       .then(callback);
-    };
-     this.getAllCategories = function (callback) {
-       $http.get(base_uri + '/api/categories')
-       .then(callback);
-    };
-     this.getFoodItems = function (callback) {
-       $http.get(base_uri + '/api/fooditems')
-       .then(callback);
-    };
-     this.getRecipesByCategory = function (category,callback) {
-       $http.get(base_uri + '/api/recipes?category='+category)
-       .then(callback);
-    };
-    this.getRecipe = function (id,callback) {
-       $http.get(base_uri + '/api/recipes/'+id)
-       .then(callback);
-    };
-    this.updateRecipe = function (recipe,callback,err) {
-       $http.put(base_uri + '/api/recipes/'+recipe.id ,recipe )
-       .then(callback);
-    };
-    this.addRecipe = function (recipe,callback,err) {
-       $http.put(base_uri + '/api/recipes',recipe )
-       .then(callback,err);
-    };
-    this.deleteRecipe = function (id) {
-            $http.delete(base_uri + '/api/recipes/'+id);
-        };
+(function() {
+  'use strict';
+    angular
+    .module('app')
+  .service('dataService', function($http) {
+  	  var base_uri = 'http://localhost:5000';
+      this.getAllRecipes = function (callback) {
+         $http.get(base_uri + '/api/recipes')
+         .then(callback);
+      };
+       this.getAllCategories = function (callback) {
+         $http.get(base_uri + '/api/categories')
+         .then(callback);
+      };
+       this.getFoodItems = function (callback) {
+         $http.get(base_uri + '/api/fooditems')
+         .then(callback);
+      };
+       this.getRecipesByCategory = function (category,callback) {
+         $http.get(base_uri + '/api/recipes?category='+category)
+         .then(callback);
+      };
+      this.getRecipe = function (id,callback) {
+         $http.get(base_uri + '/api/recipes/'+id)
+         .then(callback);
+      };
+      this.updateRecipe = function (recipe,callback,err) {
+        console.log(recipe);
+         $http.put(base_uri + '/api/recipes/'+ recipe._id ,recipe )
+         .then(callback,err);
+      };
+      this.addRecipe = function (recipe,callback,err) {
+         $http.post(base_uri + '/api/recipes',recipe )
+         .then(callback,err);
+      };
+      this.deleteRecipe = function (id) {
+              $http.delete(base_uri + '/api/recipes/'+id);
+          };
+  });
+
+})();
 
 
 
@@ -39,9 +47,6 @@ app.service('dataService', function($http) {
 
 
 
-
-
-});
 
 
 /*The base URL for the REST API is http://localhost:5000/.

@@ -25,12 +25,14 @@
       .when('/edit/:id', {
         controller: 'RecipeDetailController',
         controllerAs: 'vm',
-        templateUrl: 'templates/recipe-detail.html'
+        templateUrl: 'templates/recipe-detail.html',
+        data: 'edit'
       })
       .when('/add', {
         controller: 'RecipeDetailController',
         controllerAs: 'vm',
-        templateUrl: 'templates/recipe-detail.html'
+        templateUrl: 'templates/recipe-detail.html',
+        data: 'add'
       })
       .otherwise({
         redirectTo: '/'
