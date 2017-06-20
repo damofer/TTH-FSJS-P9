@@ -36,11 +36,14 @@
  
 
 	$scope.deleteRecipe = function(recipe_id){
-		dataService.deleteRecipe(recipe_id);
-		if(select.value != ''){
-			$scope.getRecipesByCategory(select.value);
-		}else{
-			$scope.getAllRecipes();
+		var conf = confirm("Are you sure you want to delete this recipe? ");
+		if(conf){
+			dataService.deleteRecipe(recipe_id);
+			if(select.value != ''){
+				$scope.getRecipesByCategory(select.value);
+			}else{
+				$scope.getAllRecipes();
+			}
 		}
 	}
 	// $scope.addRecipe = function(){
