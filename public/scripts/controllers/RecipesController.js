@@ -36,29 +36,34 @@
  
 
 	$scope.deleteRecipe = function(recipe_id){
-		var conf = confirm("Are you sure you want to delete this recipe? ");
-		if(conf){
-			dataService.deleteRecipe(recipe_id);
-			if(select.value != ''){
-				$scope.getRecipesByCategory(select.value);
-			}else{
-				$scope.getAllRecipes();
-			}
-		}
-	}
-	// $scope.addRecipe = function(){
-
-	// 	dataService.addRecipe({},function(){
-	// 		if(select.value != ''){
-	// 		$scope.getRecipesByCategory(select.value);
-	// 	}else{
-	// 		$scope.getAllRecipes();
-	// 	}
-	// 	},function(error){
-	// 		console.log('There has ocurred an error while adding your new recipe' ,error);
-	// 	});
+		$scope.deleteAlert(recipe_id);
 		
-	// }
+	}
+	$scope.deleteAlert = function(recipe_id){
+
+		$.confirm({
+		    title: 'Delete the recipe',
+		    content: 'Are you sure you want to delete this recipe?',
+		    buttons: {
+		        confirm: function () {
+		            dataService.deleteRecipe(recipe_id);
+					if(select.value != ''){
+						$scope.getRecipesByCategory(select.value);
+					}else{
+						$scope.getAllRecipes();
+					}
+		        },
+		        cancel: function () {
+		           
+		        }
+		    }
+		}); 
+	  
+	       
+	}
+          
+          
+  //when click on add recipe link, routes to the add state.
 	document.getElementById('addRecipe').addEventListener('click',function(){
 		$window.location.href = '#!/add';
 	});

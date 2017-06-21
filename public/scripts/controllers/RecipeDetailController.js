@@ -4,6 +4,8 @@
 .controller('RecipeDetailController',function($scope,dataService,$location,$window, $routeParams,$route){
 
 	$scope.type = $route.current.data;
+
+	//if the data obtained in the $route is 'add', then it will create a recipe object with all attributes empty.
 	if($scope.type =='add'){
 		$scope.recipe ={
 
@@ -20,6 +22,7 @@
 	}else{
 		$scope.recipe ={};
 	}
+
 	$scope.categories = [];
 
 
@@ -101,6 +104,8 @@
 
 
  	$scope.getAllCategories();
+
+ 	//if the $route param is edit, then it will bring the data of the recipe from the db
  	if($scope.type =='edit')
  		$scope.getRecipe($routeParams.id);
  	$scope.getFoodItems();
